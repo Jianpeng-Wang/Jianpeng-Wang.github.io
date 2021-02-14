@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"jeepwang9955.gitee.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Scoop命令详解一、总述scoop的命令都是以以下格式呈现的 1scoop &lt;command&gt; [&lt;args&gt;] 其中，&lt;command&gt;  部分如下： alias              管理scoop的别名，比如你可以自己定一个scoop命令，用来代替你觉得不好敲或不好记的命令bucket          管理Scoop的bucket，包括添加，查看，">
+  <meta name="description" content="Scoop命令详解一、总述scoop的命令都是以以下格式呈现的 1scoop &lt;command&gt; [&lt;args&gt;] 其中，&lt;command&gt;  部分如下：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Scoop进阶命令详解">
 <meta property="og:url" content="https://jeepwang9955.gitee.io/2021/02/14/Scoop%E8%BF%9B%E9%98%B6%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="JeepBlog">
-<meta property="og:description" content="Scoop命令详解一、总述scoop的命令都是以以下格式呈现的 1scoop &lt;command&gt; [&lt;args&gt;] 其中，&lt;command&gt;  部分如下： alias              管理scoop的别名，比如你可以自己定一个scoop命令，用来代替你觉得不好敲或不好记的命令bucket          管理Scoop的bucket，包括添加，查看，">
+<meta property="og:description" content="Scoop命令详解一、总述scoop的命令都是以以下格式呈现的 1scoop &lt;command&gt; [&lt;args&gt;] 其中，&lt;command&gt;  部分如下：">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-14T08:46:17.000Z">
-<meta property="article:modified_time" content="2021-02-14T08:46:17.000Z">
+<meta property="article:modified_time" content="2021-02-14T09:00:09.000Z">
 <meta property="article:author" content="JeepWang">
 <meta property="article:tag" content="scoop">
 <meta property="article:tag" content="包管理器">
@@ -190,8 +190,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-02-14 16:46:17" itemprop="dateCreated datePublished" datetime="2021-02-14T16:46:17+08:00">2021-02-14</time>
+              <time title="创建时间：2021-02-14 16:46:17 / 修改时间：17:00:09" itemprop="dateCreated datePublished" datetime="2021-02-14T16:46:17+08:00">2021-02-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -217,7 +218,112 @@
         <h1 id="Scoop命令详解"><a href="#Scoop命令详解" class="headerlink" title="Scoop命令详解"></a>Scoop命令详解</h1><h2 id="一、总述"><a href="#一、总述" class="headerlink" title="一、总述"></a>一、总述</h2><p>scoop的命令都是以以下格式呈现的</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scoop &lt;command&gt; [&lt;args&gt;]</span><br></pre></td></tr></table></figure>
 <p>其中，&lt;command&gt;  部分如下：</p>
-<p><a href="#1%E3%80%81alias">alias</a>              管理scoop的别名，比如你可以自己定一个scoop命令，用来代替你觉得不好敲或不好记的命令<br><a href="#2%E3%80%81bucket">bucket</a>          管理Scoop的bucket，包括添加，查看，删除等<br><a href="#3%E3%80%81cache">cache</a>            显示或者清除下载缓存，有时因网络问题导致安装多次都未安装成功，可以尝试清除下载缓存，重新安装<br><a href="#4%E3%80%81checkup">checkup</a>        检查潜在的问题<br><a href="#5%E3%80%81cleanup">cleanup</a>         清除旧版本的应用，scoop在更新软件后不会删除旧版本，需要自己手动删除<br><a href="#6%E3%80%81config">config</a>            设置或查看scoop配置<br><a href="#7%E3%80%81create">create</a>            创建一个自定义应用程序清单<br><a href="#8%E3%80%81depends">depends</a>        列出应用的所有依赖信息<br><a href="#9%E3%80%81export">export</a>            将所有已安装的应用导出到一个文件<br><a href="#10%E3%80%81help">help</a>                 显示命令帮助<br><a href="#11%E3%80%81hold">hold</a>                 禁止应用更新<br><a href="#12%E3%80%81home">home</a>              打开 APP manifest.json 标注的网站主页<br><a href="#13%E3%80%81info">info</a>                 显示应用信息<br><a href="#14%E3%80%81install">install</a>              安装应用<br><a href="#15%E3%80%81list">list</a>                    列出已安装的应用<br><a href="#16%E3%80%81prefix">prefix</a>               返回指定应用程序的路径<br><a href="#17%E3%80%81reset">reset</a>                重置应用程序以解决冲突，可以用来jdk切换版本<br><a href="#18%E3%80%81search">search</a>             在以添加的bucket中查找应用<br><a href="#19%E3%80%81status">status</a>              检查应用更新<br><a href="#20%E3%80%81unhold">unhold</a>            允许应用更新，和hold相对<br><a href="#21%E3%80%81uninstall">uninstall</a>          卸载应用<br><a href="#22%E3%80%81update">update</a>            更新scoop或更新应用<br><a href="#23%E3%80%81virustotal">virustotal</a>        在virustotal.com上寻找应用程序的 hash 散列<br><a href="#24%E3%80%81which">which</a>               返回可执行文件的位置</p>
+<a id="more"></a>
+
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a href="#1%E3%80%81alias">alias</a></td>
+<td align="left">管理scoop的别名，比如你可以自己定一个scoop命令，用来代替你觉得不好敲或不好记的命令</td>
+</tr>
+<tr>
+<td align="left"><a href="#2%E3%80%81bucket">bucket</a></td>
+<td align="left">管理Scoop的bucket，包括添加，查看，删除等</td>
+</tr>
+<tr>
+<td align="left"><a href="#3%E3%80%81cache">cache</a></td>
+<td align="left">显示或者清除下载缓存，有时因网络问题导致安装多次都未安装成功，可以尝试清除下载缓存，重新安装</td>
+</tr>
+<tr>
+<td align="left"><a href="#4%E3%80%81checkup">checkup</a></td>
+<td align="left">检查潜在的问题</td>
+</tr>
+<tr>
+<td align="left"><a href="#5%E3%80%81cleanup">cleanup</a></td>
+<td align="left">清除旧版本的应用，scoop在更新软件后不会删除旧版本，需要自己手动删除</td>
+</tr>
+<tr>
+<td align="left"><a href="#6%E3%80%81config">config</a></td>
+<td align="left">设置或查看scoop配置</td>
+</tr>
+<tr>
+<td align="left"><a href="#7%E3%80%81create">create</a></td>
+<td align="left">创建一个自定义应用程序清单</td>
+</tr>
+<tr>
+<td align="left"><a href="#8%E3%80%81depends">depends</a></td>
+<td align="left">列出应用的所有依赖信息</td>
+</tr>
+<tr>
+<td align="left"><a href="#9%E3%80%81export">export</a></td>
+<td align="left">将所有已安装的应用导出到一个文件</td>
+</tr>
+<tr>
+<td align="left"><a href="#10%E3%80%81help">help</a></td>
+<td align="left">显示命令帮助</td>
+</tr>
+<tr>
+<td align="left"><a href="#11%E3%80%81hold">hold</a></td>
+<td align="left">禁止应用更新</td>
+</tr>
+<tr>
+<td align="left"><a href="#12%E3%80%81home">home</a></td>
+<td align="left">打开 APP manifest.json 标注的网站主页</td>
+</tr>
+<tr>
+<td align="left"><a href="#13%E3%80%81info">info</a></td>
+<td align="left">显示应用信息</td>
+</tr>
+<tr>
+<td align="left"><a href="#14%E3%80%81install">install</a></td>
+<td align="left">安装应用</td>
+</tr>
+<tr>
+<td align="left"><a href="#15%E3%80%81list">list</a></td>
+<td align="left">列出已安装的应用</td>
+</tr>
+<tr>
+<td align="left"><a href="#16%E3%80%81prefix">prefix</a></td>
+<td align="left">返回指定应用程序的路径</td>
+</tr>
+<tr>
+<td align="left"><a href="#17%E3%80%81reset">reset</a></td>
+<td align="left">重置应用程序以解决冲突，可以用来jdk切换版本</td>
+</tr>
+<tr>
+<td align="left"><a href="#18%E3%80%81search">search</a></td>
+<td align="left">在以添加的bucket中查找应用</td>
+</tr>
+<tr>
+<td align="left"><a href="#19%E3%80%81status">status</a></td>
+<td align="left">检查应用更新</td>
+</tr>
+<tr>
+<td align="left"><a href="#20%E3%80%81unhold">unhold</a></td>
+<td align="left">允许应用更新，和hold相对</td>
+</tr>
+<tr>
+<td align="left"><a href="#21%E3%80%81uninstall">uninstall</a></td>
+<td align="left">卸载应用</td>
+</tr>
+<tr>
+<td align="left"><a href="#22%E3%80%81update">update</a></td>
+<td align="left">更新scoop或更新应用</td>
+</tr>
+<tr>
+<td align="left"><a href="#23%E3%80%81virustotal">virustotal</a></td>
+<td align="left">在virustotal.com上寻找应用程序的 hash 散列</td>
+</tr>
+<tr>
+<td align="left"><a href="#24%E3%80%81which">which</a></td>
+<td align="left">返回可执行文件的位置</td>
+</tr>
+</tbody></table>
 <h2 id="二、各命令详解"><a href="#二、各命令详解" class="headerlink" title="二、各命令详解"></a>二、各命令详解</h2><h3 id="1、alias"><a href="#1、alias" class="headerlink" title="1、alias"></a>1、alias</h3><p>这个命令可以给scoop 的命令起别名，之后你便可以用自己的命令操作scoop</p>
 <ul>
 <li>  用法</li>
