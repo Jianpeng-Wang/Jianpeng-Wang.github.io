@@ -162,6 +162,100 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jeepwang9955.gitee.io/2021/02/27/%E4%BF%AE%E6%94%B9Win10%E7%BB%88%E7%AB%AF%E7%BC%96%E7%A0%81%E4%B8%BAUTF8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="JeepWang">
+      <meta itemprop="description" content="记录成长过程中的点点滴滴。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JeepBlog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/27/%E4%BF%AE%E6%94%B9Win10%E7%BB%88%E7%AB%AF%E7%BC%96%E7%A0%81%E4%B8%BAUTF8/" class="post-title-link" itemprop="url">修改Win10终端编码为UTF8</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-27 12:18:14" itemprop="dateCreated datePublished" datetime="2021-02-27T12:18:14+08:00">2021-02-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">学习总结</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="修改终端编码为UTF8"><a href="#修改终端编码为UTF8" class="headerlink" title="修改终端编码为UTF8"></a>修改终端编码为UTF8</h2><p><strong>说在前面的话</strong></p>
+<p>文章起因：由于 GBK 编码的局限性，本人在编程时总是会使用 utf8 编码，在不使用集成开发环境的时候，编写好的代码在 win10 终端输出时，会出现中文乱码，虽然使用英文便可最有效的解决问题，但是不方便和别人进行合作。所以便想修改电脑编码，但是修改电脑编码会出现大量未知问题，比如曾经用 GBK 编码编写的 word 、txt 等文档都会乱码。所以又想到了只修改终端（cmd 或 powershell，两者修改方式雷同，下面演示 cmd）编码。</p>
+<ul>
+<li>  首先打开 cmd，在左上角右击选择属性（properties），在打开的面板中可以看到默认编码为 GBK</li>
+</ul>
+<p><img src="https://gitee.com/jeepwang9955/gitlearn/raw/master/img/2021/spring/20210227125816.png"></p>
+<ul>
+<li>  在终端输入命令 <code>chcp</code> 即可查看当前编码的编号（GBK：936，UTF8：65001） </li>
+</ul>
+<p><img src="https://gitee.com/jeepwang9955/gitlearn/raw/master/img/2021/spring/20210227130426.png"></p>
+<ul>
+<li>  输入命令 <code>chcp 65001</code> 修改终端编码（仅本次开启有效）</li>
+</ul>
+<p><img src="https://gitee.com/jeepwang9955/gitlearn/raw/master/img/2021/spring/20210227130618.png"></p>
+<p><img src="https://gitee.com/jeepwang9955/gitlearn/raw/master/img/2021/spring/20210227130727.png"></p>
+<ul>
+<li>  通过修改注册表永久修改终端编码，打开注册表 <code>win + r  --&gt;  regedit</code></li>
+</ul>
+<p><img src="https://gitee.com/jeepwang9955/gitlearn/raw/master/img/2021/spring/20210227131012.png"></p>
+<ul>
+<li>  找到Command Processor (修改的是 cmd，PowerShell对应powershell)</li>
+</ul>
+<p><img src="https://gitee.com/jeepwang9955/gitlearn/raw/master/img/2021/spring/image-20210227131517081.png"></p>
+<ul>
+<li>  没有 autorun 字符串值则新建字符串值，存在则直接修改，输入数值数据chcp 65001，点击OK（确定）保存，即可完成设置了</li>
+</ul>
+<p><img src="https://gitee.com/jeepwang9955/gitlearn/raw/master/img/2021/spring/20210227131800.png"></p>
+<p><img src="https://gitee.com/jeepwang9955/gitlearn/raw/master/img/2021/spring/20210227132252.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://jeepwang9955.gitee.io/2021/02/19/LearnGit/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -776,7 +870,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -789,7 +883,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
